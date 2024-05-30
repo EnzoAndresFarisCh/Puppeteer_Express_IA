@@ -51,8 +51,9 @@ app.get('/message', async (req, res) => {
                 }, 1000)
             })
         })
-        res.send(valorT);
+       return res.json({message: valorT});
     }
+    return res.json({message: null});
 });
 
 app.get('/atualizado', (request, response) => {
