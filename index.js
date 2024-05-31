@@ -22,7 +22,7 @@ function validateToken(req, res, next) {
 
 app.post('/create-page', async (req, res) => {
     try {
-        let browser = await puppeteer.launch({ headless: false });
+        let browser = await puppeteer.launch({ headless: false, executablePath: '/usr/bin/chromium-browser' });
         const page = await browser.newPage();
         await page.goto(process.env.url);
         const s = await page.waitForSelector(process.env.seletor, { timeout: 10000 });
