@@ -21,7 +21,7 @@ function validateToken(req, res, next) {
 }
 
 app.post('/create-page', async (req, res) => {
-    try {
+    
         let browser = await puppeteer.launch({ headless: false, executablePath: '/usr/bin/chromium-browser' });
         const page = await browser.newPage();
         await page.goto(process.env.url);
@@ -55,11 +55,7 @@ app.post('/create-page', async (req, res) => {
         for(let i = 0; indices.length > i; i++){
             values.splice(i, 1)
         }
-    } catch (error) {
-        console.error("Error occurred:", error);
-        values.push({ message: null });
-        res.status(500).send("Internal Server Error");
-    }
+  
 });
 
 
