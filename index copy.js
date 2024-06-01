@@ -25,7 +25,7 @@ app.post('/create-page', async (req, res) => {
        let browser = await puppeteer.launch({headless: false,  executablePath: '/usr/bin/chromium-browser'});
         let page = await browser.newPage();
         await page.goto('https://chatgpt.com/');
-        const s = await page.waitForSelector(process.env.seletor, { timeout: 50000 });
+        const s = await page.waitForSelector("#prompt-textarea", { timeout: 50000 });
 
         if (s) {
             let valorT;
@@ -68,8 +68,8 @@ async function handlePageInteraction(page, text) {
     const _v = process.env.seletor
     await page.evaluate(async (text, seletor) => {
         return new Promise(resolve => {
-            document.querySelector(seletor).value = `${text},  com header, menu, main, footer, bem elaborado e com muito detalhe no html e css tudo num arquivo só, como code para copiar o codigo`;
-            document.querySelector(seletor).dispatchEvent(new Event('input', { bubbles: true }));
+            document.querySelector("#prompt-textarea").value = `${text},  com header, menu, main, footer, bem elaborado e com muito detalhe no html e css tudo num arquivo só, como code para copiar o codigo`;
+            document.querySelector("#prompt-textarea").dispatchEvent(new Event('input', { bubbles: true }));
             setTimeout(() => {        
                 document.querySelector('button[data-testid="send-button"]').click();
                 resolve(true)
