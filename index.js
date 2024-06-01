@@ -54,8 +54,23 @@ app.get('/message', async (req, res) => {
 app.get('/atualizado', (request, response) => {
     return response.json({message: 'server atualizado'})
 })
+<<<<<<< HEAD
 startBrowser().then(() => {
     app.listen(port, () => {
         console.log(`Servidor Express rodando em http://localhost:${port}`);
     });
 });
+=======
+
+app.get('/status', (request, response) => {
+    response.json({ message: 'server on' });
+});
+
+app.get('/get-values', (req, res) => {
+    res.json(values);
+});
+
+app.listen(port, () => {
+    console.log(`Servidor Express rodando em http://localhost:${port}`);
+});
+>>>>>>> e53c434bc7bd44e35bc98fcf44e31cd52cf9c8e1
