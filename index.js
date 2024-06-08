@@ -26,7 +26,9 @@ function validateToken(req, res, next) {
 
 app.post('/create-page', async (req, res) => {
     try {
-       let browser = await puppeteer.launch({headless: false, executablePath: '/usr/bin/chromium-browser'});
+       let browser = await puppeteer.launch({ executablePath: '/snap/snapd/21465/usr/lib/snapd/apparmor.d/abstractions/ubuntu-browsers.d/chromium-browser',
+            args: ['--no-sandbox', '--disable-setuid-sandbox'],
+            headless: false});
         let page = await browser.newPage();
         await page.goto('https://chatgpt.com/');
         const s = await page.waitForSelector("#prompt-textarea", { timeout: 50000 });
